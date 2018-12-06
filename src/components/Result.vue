@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p>Counter is: {{ doubleCounter }}</p>
+    <p>Counter (computed) is: {{ doubleCounter }}</p>
+    <p>Counter (state)is: {{ counter }}</p>
     <p>Number of clicks: {{ stringCounter }}</p>
   </div>
 </template>
@@ -9,6 +10,11 @@
 import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {
+      counter: this.$store.state.counter
+    };
+  },
   computed: {
     ...mapGetters(["doubleCounter", "stringCounter"])
   }

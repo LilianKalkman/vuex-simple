@@ -16,12 +16,21 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    increment: state => {
-      state.counter++;
+    // directly mutates state
+    increment: (state, payload) => {
+      state.counter += payload;
     },
     decrement: state => {
       state.counter--;
     }
   },
-  actions: {}
+  actions: {
+    // hier kan je ook async functions doen
+    increment: (context, payload) => {
+      context.commit("increment", payload);
+    },
+    decrement: context => {
+      context.commit("decrement");
+    }
+  }
 });
