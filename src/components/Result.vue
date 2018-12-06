@@ -1,5 +1,6 @@
 <template>
   <div>
+    <input type="text" placeholder="Type a Start Value" @input="changeCounter">
     <p>Counter (computed) is: {{ doubleCounter }}</p>
     <p>Counter (state)is: {{ counter }}</p>
     <p>Number of clicks: {{ stringCounter }}</p>
@@ -10,13 +11,13 @@
 import { mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-      counter: this.$store.state.counter
-    };
-  },
   computed: {
-    ...mapGetters(["doubleCounter", "stringCounter"])
+    ...mapGetters(["doubleCounter", "stringCounter", "counter"])
+  },
+  methods: {
+    changeCounter(event) {
+      this.$store.dispatch("update", event.target.value);
+    }
   }
 };
 </script>
